@@ -1,0 +1,48 @@
+name: Parcoursup Monitor
+
+on:
+  schedule:
+    - cron: '0 8 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: 📦 Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: 📁 Ensure data directory exists
+        run: mkdir -p data
+      
+      - name: 🚀 Run Parcoursup Monitor
+        env:
+          SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        run: python src/monitor.py
+      
+      - name: 💾 Commit state changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "GitHub Actions Bot"
+          git add data/
+          git diff --quiet && git diff --staged --quiet || git commit -m "🤖 Update formation data [$(date +'%Y-%m-%d %H:%M')]"
+          git push
+      
+      - name: ✅ Monitor completed
+        run: echo "Parcoursup monitor execution completed successfully!"
