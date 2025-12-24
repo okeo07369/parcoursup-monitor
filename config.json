@@ -35,7 +35,7 @@
     }
   },
   "email": {
-    "recipient": "YOUR-EMAIL@gmail.com",
+    "recipient": "ksantekcheath@gmail.com",
     "subject_prefix": "[Parcoursup Monitor]",
     "send_if_no_new": true
   }
