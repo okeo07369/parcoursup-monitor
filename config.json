@@ -1,0 +1,42 @@
+{
+  "filters": {
+    "session": ["2025", "2026"],
+    "departements": [
+      "75",
+      "77",
+      "93",
+      "94"
+    ],
+    "types_formation": [
+      "BUT",
+      "Licence",
+      "Licence professionnelle"
+    ],
+    "keywords_include": [
+      "informatique",
+      "numérique",
+      "digital",
+      "entrepreneuriat",
+      "management",
+      "gestion",
+      "innovation"
+    ],
+    "keywords_exclude": [
+      "médecine",
+      "santé"
+    ],
+    "statut": [
+      "Public"
+    ],
+    "max_distance_km": 50,
+    "home_coordinates": {
+      "lat": 48.8534,
+      "lon": 2.6381
+    }
+  },
+  "email": {
+    "recipient": "YOUR-EMAIL@gmail.com",
+    "subject_prefix": "[Parcoursup Monitor]",
+    "send_if_no_new": true
+  }
+}
