@@ -118,7 +118,7 @@ def fetch_page(offset: int, limit: int, session_year: str) -> Optional[Dict]:
     params = {
         "limit": limit,
         "offset": offset,
-        "where": f"session='{session_year}'"
+        "refine": f"annee:{session_year}"
     }
     
     headers = {
